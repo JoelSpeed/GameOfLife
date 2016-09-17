@@ -11,6 +11,8 @@ namespace GameOfLife
             for (int i = 1; i <= Generations; i++)
             {
                 Console.WriteLine("Generation {0}", i);
+                var board = new Board(10);
+                board.Print();
             }
 
             // Wait for a key press before exiting
