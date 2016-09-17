@@ -25,5 +25,54 @@ namespace GameOfLife
                 }
             }
         }
+
+        public void Print()
+        {
+            var horizontalBorder = CreateHorizontalBorder();
+
+            // print top border
+            Console.WriteLine(horizontalBorder);
+
+            // print each row in turn
+            for (int i = 0; i < Dimension; i++)
+            {
+                var row = ConstructRowString(i);
+                Console.WriteLine(row);
+            }
+
+            // print bottom border
+            Console.WriteLine(horizontalBorder);
+        }
+
+        private string ConstructRowString(int rowNumber)
+        {
+            string row = "|";
+
+            for (int i = 0; i < Dimension; i++)
+            {
+                if (Grid[rowNumber, i].IsAlive)
+                {
+                    row += "O";
+                }
+                else
+                {
+                    row += "X";
+                }
+            }
+
+            row += "|";
+            return row;
+        }
+
+        private string CreateHorizontalBorder()
+        {
+            // construct horizontal border
+            string horizontalBorder = " ";
+            for (int i = 0; i < Dimension; i++)
+            {
+                horizontalBorder += "-";
+            }
+            return horizontalBorder;
+        }
     }
 }
