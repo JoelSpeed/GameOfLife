@@ -7,11 +7,17 @@ namespace GameOfLife
         public int Dimension { get; set; }
         public Cell[,] Grid { get; }
 
-        public Board(int Dimension)
+        private Board(int Dimension)
         {
             this.Dimension = Dimension;
             this.Grid = new Cell[this.Dimension, this.Dimension];
             InitialiseGrid();
+        }
+
+        public static Board CreateBlank(int Dimension)
+        {
+            Board board = new Board(Dimension);
+            return board;
         }
 
         public Board(int Dimension, Random random)

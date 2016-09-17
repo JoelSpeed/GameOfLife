@@ -22,7 +22,7 @@ namespace GameOfLife.Tests
         [Test]
         public void CheckBoardDimensionGetsSet()
         {
-            var board = new Board(10);
+            var board = Board.CreateBlank(10);
             if (board.Dimension != 10)
             {
                 Assert.Fail();
@@ -32,7 +32,7 @@ namespace GameOfLife.Tests
         [Test]
         public void CheckBoardGridIsCorrectSize()
         {
-            var board = new Board(10);
+            var board = Board.CreateBlank(10);
             // check height
             if (board.Grid.GetLength(0) != 10)
             {
@@ -49,7 +49,7 @@ namespace GameOfLife.Tests
         [UseReporter(typeof(DiffReporter))]
         public void CheckBlankBoardPrintsCorrectly()
         {
-            var board = new Board(10);
+            var board = Board.CreateBlank(10);
 
             StringWriter stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -77,7 +77,7 @@ namespace GameOfLife.Tests
         [UseReporter(typeof(DiffReporter))]
         public void CheckRule1PrintsCorrectly()
         {
-            var board = new Board(3);
+            var board = Board.CreateBlank(3);
 
             // this cell has no live neighbours, should die.
             board.Grid[0, 0].IsAlive = true;
@@ -96,7 +96,7 @@ namespace GameOfLife.Tests
         [UseReporter(typeof(DiffReporter))]
         public void CheckRule2And4PrintsCorrectly()
         {
-            var board = new Board(3);
+            var board = Board.CreateBlank(3);
 
             // cell [0,1] has 2 live neighbours, should survive #2
             // other live cells should die
@@ -119,7 +119,7 @@ namespace GameOfLife.Tests
         [UseReporter(typeof(DiffReporter))]
         public void CheckRule3PrintsCorrectly()
         {
-            var board = new Board(3);
+            var board = Board.CreateBlank(3);
 
             // These four should live as per #2
             board.Grid[0, 1].IsAlive = true;
