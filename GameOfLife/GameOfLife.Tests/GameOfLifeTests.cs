@@ -72,5 +72,73 @@ namespace GameOfLife.Tests
 
             Approvals.Verify(stringWriter.ToString());
         }
+
+        [Test]
+        [UseReporter(typeof(DiffReporter))]
+        public void CheckRule1PrintsCorrectly()
+        {
+            var board = new Board(3);
+
+            // this cell has no live neighbours, should die.
+            board.Grid[0, 0].IsAlive = true;
+            // remaining cells all have no live neighbours so should stay dead
+
+            var secondGenBoard = new Board(board);
+
+            StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+            secondGenBoard.Print();
+
+            Approvals.Verify(stringWriter.ToString());
+        }
+
+        [Test]
+        [UseReporter(typeof(DiffReporter))]
+        public void CheckRule2And4PrintsCorrectly()
+        {
+            var board = new Board(3);
+
+            // cell [0,1] has 2 live neighbours, should survive #2
+            // other live cells should die
+            // cell [1, 1] has 3 live cells as neighbours, should become alive #4
+            board.Grid[0, 0].IsAlive = true;
+            board.Grid[0, 1].IsAlive = true;
+            board.Grid[0, 2].IsAlive = true;
+
+
+            var secondGenBoard = new Board(board);
+
+            StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+            secondGenBoard.Print();
+
+            Approvals.Verify(stringWriter.ToString());
+        }
+
+        [Test]
+        [UseReporter(typeof(DiffReporter))]
+        public void CheckRule3PrintsCorrectly()
+        {
+            var board = new Board(3);
+
+            // These four should live as per #2
+            board.Grid[0, 1].IsAlive = true;
+            board.Grid[1, 0].IsAlive = true;
+            board.Grid[1, 2].IsAlive = true;
+            board.Grid[2, 1].IsAlive = true;
+
+            // This one should die as per #3
+            board.Grid[1, 1].IsAlive = true;
+
+            // remaining dead cells should become alive, #4
+
+            var secondGenBoard = new Board(board);
+
+            StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+            secondGenBoard.Print();
+
+            Approvals.Verify(stringWriter.ToString());
+        }
     }
 }
