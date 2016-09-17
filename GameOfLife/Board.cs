@@ -90,7 +90,7 @@ namespace GameOfLife
                     cell.IsAlive = true;
                     break;
                 default:
-                    throw new Exception("A rule was not matched, a rule should always be matched");
+                    break;
             }
         }
 
