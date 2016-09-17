@@ -77,7 +77,7 @@ namespace GameOfLife
                 }
                 else
                 {
-                    row += "X";
+                    row += " ";
                 }
             }
 
