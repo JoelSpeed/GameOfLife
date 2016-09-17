@@ -60,9 +60,11 @@ namespace GameOfLife.Tests
 
         [Test]
         [UseReporter(typeof(DiffReporter))]
-        public void CheckBlankBoardPrintsCorrectly()
+        public void CheckRandomBoardPrintsCorrectly()
         {
-            var board = new Board(10);
+            int seed = 845584026;
+            Random random = new Random(seed);
+            var board = new Board(10, random);
 
             StringWriter stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -70,6 +72,5 @@ namespace GameOfLife.Tests
 
             Approvals.Verify(stringWriter.ToString());
         }
-
     }
 }
