@@ -1,4 +1,7 @@
-﻿using ApprovalTests;
+﻿using System;
+using System.IO;
+using ApprovalTests;
+using ApprovalTests.Reporters;
 using NUnit.Framework;
 
 namespace GameOfLife.Tests
@@ -35,11 +38,25 @@ namespace GameOfLife.Tests
             {
                 Assert.Fail();
             }
-            // check width
+            // check height
             if (board.Grid.GetLength(1) != 10)
             {
                 Assert.Fail();
             }
         }
+
+        [Test]
+        [UseReporter(typeof(DiffReporter))]
+        public void CheckBlankBoardPrintsCorrectly()
+        {
+            var board = new Board(10);
+
+            StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+            board.Print();
+
+            Approvals.Verify(stringWriter.ToString());
+        }
+
     }
 }
