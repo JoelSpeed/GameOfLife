@@ -4,12 +4,21 @@ namespace GameOfLife
 {
     class Play
     {
-        static void Main()
+        static void Main(string[] args)
         {
-            int Generations = 10;
+            int BoardSize = 20;
+            int Generations = 20;
+
+            // process cmd line arguments
+            if (args.Length == 2)
+            {
+                Int32.TryParse(args[0], out BoardSize);
+                Int32.TryParse(args[1], out Generations);
+            }
+
             Random random = new Random(Guid.NewGuid().GetHashCode());
 
-            Board oldBoard = new Board(10, random);
+            Board oldBoard = new Board(BoardSize, random);
 
             Console.WriteLine("Generation 1");
             oldBoard.Print();
