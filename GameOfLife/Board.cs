@@ -60,7 +60,7 @@ namespace GameOfLife
         {
             for (int i = 0; i < Dimension; i++)
             {
-                for (int j = 0; i < Dimension; i++)
+                for (int j = 0; j < Dimension; j++)
                 {
                     int aliveNeighbourCount = CountCellAliveNeighbours(previousBoard, i, j);
                     Cell cell = this.Grid[i, j];
