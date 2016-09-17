@@ -134,7 +134,11 @@ namespace GameOfLife
 
                     try
                     {
-                        neighbourIsAlive = previousBoard.Grid[row + i, column + j].IsAlive;
+                        // dont count cell as a neighbour of itself
+                        if (!(i == 0 && j == 0))
+                        {
+                            neighbourIsAlive = previousBoard.Grid[row + i, column + j].IsAlive;
+                        }
                     }
                     catch (IndexOutOfRangeException)
                     {
