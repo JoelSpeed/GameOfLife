@@ -1,12 +1,12 @@
 ﻿ ----------
-|XXXXXXXXXX|
-|XXXXXXXXXX|
-|XXXXXXXXXX|
-|XXXXXXXXXX|
-|XXXXXXXXXX|
-|XXXXXXXXXX|
-|XXXXXXXXXX|
-|XXXXXXXXXX|
-|XXXXXXXXXX|
-|XXXXXXXXXX|
+|          |
+|          |
+|          |
+|          |
+|          |
+|          |
+|          |
+|          |
+|          |
+|          |
  ----------
