@@ -18,7 +18,7 @@ namespace GameOfLife
 
             Random random = new Random(Guid.NewGuid().GetHashCode());
 
-            Board oldBoard = new Board(BoardSize, random);
+            Board oldBoard = Board.CreateRandom(BoardSize, random);
 
             Console.WriteLine("Generation 1");
             oldBoard.Print();

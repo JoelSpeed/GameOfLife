@@ -64,7 +64,7 @@ namespace GameOfLife.Tests
         {
             int seed = 845584026;
             Random random = new Random(seed);
-            var board = new Board(10, random);
+            var board = Board.CreateRandom(10, random);
 
             StringWriter stringWriter = new StringWriter();
             Console.SetOut(stringWriter);

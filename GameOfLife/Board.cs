@@ -20,12 +20,11 @@ namespace GameOfLife
             return board;
         }
 
-        public Board(int Dimension, Random random)
+        public static Board CreateRandom(int Dimension, Random random)
         {
-            this.Dimension = Dimension;
-            this.Grid = new Cell[this.Dimension, this.Dimension];
-            InitialiseGrid();
-            PopulateGrid(random);
+            Board board = new Board(Dimension);
+            PopulateRandomGrid(board, random);
+            return board;
         }
 
         public Board(Board previousBoard)
@@ -51,11 +50,13 @@ namespace GameOfLife
             }
         }
 
-        private void PopulateGrid(Random random)
+        private static void PopulateRandomGrid(Board board, Random random)
         {
             /* 
              * Takes a random seed and generates a random layout on the board.
              */
+            int Dimension = board.Dimension;
+
             int numAliveCells = random.Next(Dimension, Dimension*Dimension);
 
             for (int i = 0; i < numAliveCells; i++)
@@ -63,7 +64,7 @@ namespace GameOfLife
                 int row = random.Next(0, Dimension);
                 int column = random.Next(0, Dimension);
 
-                Grid[row, column].IsAlive = true;
+                board.Grid[row, column].IsAlive = true;
             }
         }
 
