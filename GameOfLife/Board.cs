@@ -62,11 +62,14 @@ namespace GameOfLife
                 for (int j = 0; j < Dimension; j++)
                 {
                     int aliveNeighbourCount = CountCellAliveNeighbours(previousBoard, i, j);
-                    Cell cell = this.Grid[i, j];
+                    Cell oldCell = previousBoard.Grid[i, j];
+                    Cell newCell = this.Grid[i, j];
 
-                    var rule = CalculateMatchingRule(cell, aliveNeighbourCount);
+                    // calculate matching rule based on old cell state
+                    var rule = CalculateMatchingRule(oldCell, aliveNeighbourCount);
 
-                    UpdateCell(rule, cell);
+                    // set new cell state based on rule
+                    UpdateCell(rule, newCell);
 
                 }
             }
