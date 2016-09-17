@@ -14,6 +14,14 @@ namespace GameOfLife
             InitialiseGrid();
         }
 
+        public Board(int Dimension, Random random)
+        {
+            this.Dimension = Dimension;
+            this.Grid = new Cell[this.Dimension, this.Dimension];
+            InitialiseGrid();
+            PopulateGrid(random);
+        }
+
         private void InitialiseGrid()
         {
             // fill the grid with new cells
@@ -23,6 +31,19 @@ namespace GameOfLife
                 {
                     Grid[i, j] = new Cell();
                 }
+            }
+        }
+
+        private void PopulateGrid(Random random)
+        {
+            int numAliveCells = random.Next(0, Dimension*Dimension);
+
+            for(int i = 0; i < numAliveCells; i++)
+            {
+                int row = random.Next(0, Dimension);
+                int column = random.Next(0, Dimension);
+
+                Grid[row, column].IsAlive = true;
             }
         }
 

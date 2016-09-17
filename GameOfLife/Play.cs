@@ -7,11 +7,12 @@ namespace GameOfLife
         static void Main()
         {
             int Generations = 10;
+            Random random = new Random(Guid.NewGuid().GetHashCode());
 
             for (int i = 1; i <= Generations; i++)
             {
                 Console.WriteLine("Generation {0}", i);
-                var board = new Board(10);
+                var board = new Board(10, random);
                 board.Print();
             }
 
