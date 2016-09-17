@@ -26,7 +26,7 @@ namespace GameOfLife
             for (int i = 2; i <= Generations; i++)
             {
                 Console.WriteLine("Generation {0}", i);
-                var board = new Board(oldBoard);
+                var board = Board.CreateFromPrevious(oldBoard);
                 oldBoard = board;
                 board.Print();
             }

@@ -83,7 +83,7 @@ namespace GameOfLife.Tests
             board.Grid[0, 0].IsAlive = true;
             // remaining cells all have no live neighbours so should stay dead
 
-            var secondGenBoard = new Board(board);
+            var secondGenBoard = Board.CreateFromPrevious(board);
 
             StringWriter stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -106,7 +106,7 @@ namespace GameOfLife.Tests
             board.Grid[0, 2].IsAlive = true;
 
 
-            var secondGenBoard = new Board(board);
+            var secondGenBoard = Board.CreateFromPrevious(board);
 
             StringWriter stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -132,7 +132,7 @@ namespace GameOfLife.Tests
 
             // remaining dead cells should become alive, #4
 
-            var secondGenBoard = new Board(board);
+            var secondGenBoard = Board.CreateFromPrevious(board);
 
             StringWriter stringWriter = new StringWriter();
             Console.SetOut(stringWriter);

@@ -27,12 +27,11 @@ namespace GameOfLife
             return board;
         }
 
-        public Board(Board previousBoard)
+        public static Board CreateFromPrevious(Board previousBoard)
         {
-            this.Dimension = previousBoard.Dimension;
-            this.Grid = new Cell[this.Dimension, this.Dimension];
-            InitialiseGrid();
-            PopulateGrid(previousBoard);
+            Board board = new Board(previousBoard.Dimension);
+            PopulateFromPreviousGrid(board, previousBoard);
+            return board;
         }
 
         private void InitialiseGrid()
@@ -68,7 +67,7 @@ namespace GameOfLife
             }
         }
 
-        private void PopulateGrid(Board previousBoard)
+        private static void PopulateFromPreviousGrid(Board board, Board previousBoard)
         {
             /* Populates the cells of the grid based on a previous board.
              * Each cell is evaluated against the rules of the game of life
@@ -76,13 +75,16 @@ namespace GameOfLife
              * board.
              */
 
+            int Dimension = board.Dimension;
+            Cell[,] Grid = board.Grid;
+
             for (int i = 0; i < Dimension; i++)
             {
                 for (int j = 0; j < Dimension; j++)
                 {
                     int aliveNeighbourCount = CountCellAliveNeighbours(previousBoard, i, j);
                     Cell oldCell = previousBoard.Grid[i, j];
-                    Cell newCell = this.Grid[i, j];
+                    Cell newCell = Grid[i, j];
 
                     // calculate matching rule based on old cell state
                     var rule = CalculateMatchingRule(oldCell, aliveNeighbourCount);
@@ -154,7 +156,7 @@ namespace GameOfLife
             return rule;
         }
 
-        private int CountCellAliveNeighbours(Board board, int row, int column)
+        private static int CountCellAliveNeighbours(Board board, int row, int column)
         {
             /*
              * Takes a board and calculates how many neighbours of a given
