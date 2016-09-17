@@ -45,7 +45,7 @@ namespace GameOfLife
 
         private void PopulateGrid(Random random)
         {
-            int numAliveCells = random.Next(0, Dimension*Dimension);
+            int numAliveCells = random.Next(Dimension, Dimension*Dimension);
 
             for (int i = 0; i < numAliveCells; i++)
             {
