@@ -58,5 +58,18 @@ namespace GameOfLife.Tests
             Approvals.Verify(stringWriter.ToString());
         }
 
+        [Test]
+        [UseReporter(typeof(DiffReporter))]
+        public void CheckBlankBoardPrintsCorrectly()
+        {
+            var board = new Board(10);
+
+            StringWriter stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+            board.Print();
+
+            Approvals.Verify(stringWriter.ToString());
+        }
+
     }
 }
